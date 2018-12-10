@@ -1,0 +1,38 @@
+{
+  "pages": [
+    "pages/index/main",
+    "pages/study/main",
+    "pages/mine/main",
+    "pages/counter/main"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "首页",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "selectedColor": "#ff3f2d",
+    "backgroundColor": "#fff",
+    "list": [{
+      "pagePath": "pages/index/main",
+      "text": "首页",
+      "iconPath": "./static/asset/icon/index@3x.png",
+      "selectedIconPath": "./static/asset/icon/index-s@3x.png"
+    }, {
+      "pagePath": "pages/study/main",
+      "text": "学习",
+      "iconPath": "./static/asset/icon/study@3x.png",
+      "selectedIconPath": "./static/asset/icon/study-s@3x.png"
+    }, {
+      "pagePath": "pages/mine/main",
+      "text": "我的",
+      "iconPath": "./static/asset/icon/mine@3x.png",
+      "selectedIconPath": "./static/asset/icon/mine-s@3x.png"
+    }]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  }
+}
