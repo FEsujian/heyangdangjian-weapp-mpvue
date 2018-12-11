@@ -32,7 +32,9 @@
             style="margin-right: 10px;"
           >
         </div>
-        <!-- <newsCard :newsData="dangjiangaikuangData"></newsCard> -->
+      </div>
+      <div class="gaikuang">
+        <newsCard :newsData="indexConfig"></newsCard>
       </div>
     </div>
     <div class="content heyangdongtai">
@@ -56,17 +58,14 @@ import newsCard from "../../components/newsCard.vue";
 export default {
   data() {
     return {
-      dangjiangaikuangData: {
+      indexConfig: {
+        xindeId: 1,
         imgUrl:
           "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1544503933316&di=d924751d86766b77ac08e82135664f43&imgtype=0&src=http%3A%2F%2Fbig5.taiwan.cn%2Fxwzx%2FPoliticsNews%2F201712%2FW020171226350972179329.jpg",
-        title: `"金色名片"永不退色`,
+        title: `合阳党建概况`,
+        isShowTime: false,
         subhead:
-          "2012年12月4日，习近平总书记主持中央政治局会议，审议2012年12月4日，习近平总书记主持中央政治局会议，审议2012年12月4日，习近平总书记主持中央政治局会议，审议2012年12月4日，习近平总书记主持中央政治局会议，审议…",
-        time: "2018/6/14",
-        isShowTime: false
-      },
-      indexConfig: {
-        xindeId: 1
+          "2018年，中共合阳县委紧紧围绕全面从严治党要求，深入贯彻落实党的十九大和习近平总书记新时代中国特色社会主义思想精神，聚焦党建主业，主动担当作为，凝聚广泛力量，奋力追赶超越，以新作为奋力开创组织工作新局面。"
       }
     };
   },
@@ -127,20 +126,22 @@ export default {
 .content {
   margin-top: 10px;
   width: 100%;
-
   box-sizing: border-box;
   -moz-box-sizing: border-box; /* Firefox */
   -webkit-box-sizing: border-box; /* Safari */
   background-color: #fff;
 }
 .dangjiangaikuang {
-  height: 132px;
+  height: 150px;
 }
 .heyangdongtai {
   height: 500px;
 }
 .content .title {
-  height: 35px;
-  line-height: 35px;
+  height: 30px;
+  line-height: 30px;
+}
+.gaikuang {
+  height: 120px;
 }
 </style>

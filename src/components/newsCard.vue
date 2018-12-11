@@ -19,12 +19,11 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .newsCard {
   width: 100%;
   height: 100px;
   padding: 10px 0;
-  margin-top: 10px;
   background-color: #fff;
   display: flex;
 }
@@ -39,7 +38,7 @@ export default {
 }
 
 .title {
-  margin: 5px 10px 5px 0;
+  margin: 10px 10px 5px 0;
   font-size: 14px;
   max-width: 205px;
   overflow: hidden;
