@@ -3,12 +3,12 @@
     "pages/index/main",
     "pages/study/main",
     "pages/mine/main",
-    "pages/counter/main"
+    "pages/news/main",
+    "pages/newsList/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "首页",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {

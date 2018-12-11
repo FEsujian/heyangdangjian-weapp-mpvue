@@ -4,7 +4,7 @@
       <img src="../../../static/asset/image/banner@3x.png" class="banner">
       <div class="topButton">
         <div class="topButtonItem">
-          <img src="../../../static/asset/icon/xindetihui@3x.png" class="icon30">
+          <img src="../../../static/asset/icon/heyangjianjie@3x.png" class="icon30">
           <div class="buttonTitle">合阳简介</div>
         </div>
         <div class="topButtonItem">
