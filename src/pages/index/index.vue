@@ -3,7 +3,7 @@
     <div class="width100 top">
       <img src="../../../static/asset/image/banner@3x.png" class="banner">
       <div class="topButton">
-        <div class="topButtonItem">
+        <div class="topButtonItem" @click="heyangjianjie">
           <img src="../../../static/asset/icon/heyangjianjie@3x.png" class="icon30">
           <div class="buttonTitle">合阳简介</div>
         </div>
@@ -21,9 +21,9 @@
         </div>
       </div>
     </div>
-    <div class="content xindetuijian">
+    <div class="content dangjiangaikuang" @click="dangjiangaikuang">
       <div class="title">
-        <div class="inline" style="font-size:16px;margin-left: 20px;">心得推荐</div>
+        <div class="inline" style="font-size:16px;margin-left: 20px;">党建概况</div>
         <div class="inline" style="font-size:12px;color:#9B9B9B;float:right;">
           查看详情
           <img
@@ -32,6 +32,7 @@
             style="margin-right: 10px;"
           >
         </div>
+        <!-- <newsCard :newsData="dangjiangaikuangData"></newsCard> -->
       </div>
     </div>
     <div class="content heyangdongtai">
@@ -51,14 +52,42 @@
 </template>
 
 <script>
+import newsCard from "../../components/newsCard.vue";
 export default {
   data() {
-    return {};
+    return {
+      dangjiangaikuangData: {
+        imgUrl:
+          "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1544503933316&di=d924751d86766b77ac08e82135664f43&imgtype=0&src=http%3A%2F%2Fbig5.taiwan.cn%2Fxwzx%2FPoliticsNews%2F201712%2FW020171226350972179329.jpg",
+        title: `"金色名片"永不退色`,
+        subhead:
+          "2012年12月4日，习近平总书记主持中央政治局会议，审议2012年12月4日，习近平总书记主持中央政治局会议，审议2012年12月4日，习近平总书记主持中央政治局会议，审议2012年12月4日，习近平总书记主持中央政治局会议，审议…",
+        time: "2018/6/14",
+        isShowTime: false
+      },
+      indexConfig: {
+        xindeId: 1
+      }
+    };
   },
 
-  components: {},
+  components: {
+    newsCard
+  },
 
-  methods: {},
+  methods: {
+    heyangjianjie() {
+      this.toDetails(1);
+    },
+    dangjiangaikuang() {
+      this.toDetails(2);
+    },
+    toDetails(id) {
+      wx.navigateTo({
+        url: `/pages/news/main?id=${id}`
+      });
+    }
+  },
 
   created() {}
 };
@@ -104,7 +133,7 @@ export default {
   -webkit-box-sizing: border-box; /* Safari */
   background-color: #fff;
 }
-.xindetuijian {
+.dangjiangaikuang {
   height: 132px;
 }
 .heyangdongtai {

@@ -4,7 +4,7 @@
     <div class="details">
       <div class="title">{{newsData.title}}</div>
       <div class="subhead">{{newsData.subhead}}</div>
-      <div class="time">{{newsData.time}}</div>
+      <div class="time" v-if="newsData.isShowTime">{{newsData.time}}</div>
     </div>
   </div>
 </template>
