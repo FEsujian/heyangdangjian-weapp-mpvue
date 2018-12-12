@@ -1,4 +1,4 @@
-const host = 'http://localhost:8999'
+const host = 'http://192.168.1.88:8999'
 
 function formatNumber(n) {
   const str = n.toString()

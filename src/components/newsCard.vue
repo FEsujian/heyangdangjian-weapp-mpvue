@@ -1,10 +1,10 @@
 <template>
-  <div class="newsCard">
+  <div class="newsCard" @click="toDetails">
     <img :src="newsData.imgUrl" class="thumbnail">
     <div class="details">
       <div class="title">{{newsData.title}}</div>
-      <div class="subhead">{{newsData.subhead}}</div>
-      <div class="time" v-if="newsData.isShowTime">{{newsData.time}}</div>
+      <div class="abstract">{{newsData.abstract}}</div>
+      <div class="time" v-if="newsData.isShowTime">{{newsData.createTime}}</div>
     </div>
   </div>
 </template>
@@ -15,6 +15,13 @@ export default {
     newsData: {
       required: true
     }
+  },
+  methods: {
+    toDetails() {
+      wx.navigateTo({
+        url: `/pages/news/main?id=${this.newsData.id}`
+      });
+    }
   }
 };
 </script>
@@ -23,7 +30,8 @@ export default {
 .newsCard {
   width: 100%;
   height: 100px;
-  padding: 10px 0;
+  padding: 1px 0;
+  margin-top: 10px;
   background-color: #fff;
   display: flex;
 }
@@ -38,16 +46,16 @@ export default {
 }
 
 .title {
-  margin: 10px 10px 5px 0;
+  margin: 10px 10px 1px 0;
   font-size: 14px;
   max-width: 205px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.subhead {
+.abstract {
   font-size: 12px;
-  margin: 5px 10px 5px 0;
+  margin: 1px 10px 2px 0;
   color: #4a4a4a;
   display: -webkit-box;
   -webkit-box-orient: vertical;

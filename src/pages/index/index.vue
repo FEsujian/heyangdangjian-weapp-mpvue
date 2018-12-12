@@ -11,7 +11,7 @@
           <img src="../../../static/asset/icon/heyangdongtai@3x.png" class="icon30">
           <div class="buttonTitle">合阳动态</div>
         </div>
-        <div class="topButtonItem">
+        <div class="topButtonItem" @click="dangjianyaowen">
           <img src="../../../static/asset/icon/dangjianyaowen@3x.png" class="icon30">
           <div class="buttonTitle">党建要闻</div>
         </div>
@@ -59,7 +59,7 @@ export default {
   data() {
     return {
       indexConfig: {
-        xindeId: 1,
+        xindeId: 4,
         imgUrl:
           "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1544503933316&di=d924751d86766b77ac08e82135664f43&imgtype=0&src=http%3A%2F%2Fbig5.taiwan.cn%2Fxwzx%2FPoliticsNews%2F201712%2FW020171226350972179329.jpg",
         title: `合阳党建概况`,
@@ -76,14 +76,22 @@ export default {
 
   methods: {
     heyangjianjie() {
-      this.toDetails(1);
+      this.toDetails(4);
     },
     dangjiangaikuang() {
       this.toDetails(2);
     },
+    dangjianyaowen() {
+      this.toNewsList(4);
+    },
     toDetails(id) {
       wx.navigateTo({
         url: `/pages/news/main?id=${id}`
+      });
+    },
+    toNewsList(id) {
+      wx.navigateTo({
+        url: `/pages/newsList/main?title=党建要闻&id=${id}`
       });
     }
   },
