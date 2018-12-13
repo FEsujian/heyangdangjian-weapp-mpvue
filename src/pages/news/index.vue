@@ -22,7 +22,6 @@ export default {
     };
   },
   mounted() {
-    console.log(this.$root.$mp);
     this.$axios
       .get({
         url: `/findArticleById?id=${this.$root.$mp.query.id}`

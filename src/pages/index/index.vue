@@ -7,7 +7,7 @@
           <img src="../../../static/asset/icon/heyangjianjie@3x.png" class="icon30">
           <div class="buttonTitle">合阳简介</div>
         </div>
-        <div class="topButtonItem">
+        <div class="topButtonItem" @click="heyangdongtai">
           <img src="../../../static/asset/icon/heyangdongtai@3x.png" class="icon30">
           <div class="buttonTitle">合阳动态</div>
         </div>
@@ -15,16 +15,20 @@
           <img src="../../../static/asset/icon/dangjianyaowen@3x.png" class="icon30">
           <div class="buttonTitle">党建要闻</div>
         </div>
-        <div class="topButtonItem">
+        <div class="topButtonItem" @click="dangjianhuodong">
           <img src="../../../static/asset/icon/dangjianhuodong@3x.png" class="icon30">
           <div class="buttonTitle">党建活动</div>
         </div>
       </div>
     </div>
-    <div class="content dangjiangaikuang" @click="dangjiangaikuang">
+    <div class="content dangjiangaikuang">
       <div class="title">
         <div class="inline" style="font-size:16px;margin-left: 20px;">党建概况</div>
-        <div class="inline" style="font-size:12px;color:#9B9B9B;float:right;">
+        <div
+          class="inline"
+          style="font-size:12px;color:#9B9B9B;float:right;"
+          @click="dangjiangaikuang"
+        >
           查看详情
           <img
             src="../../../static/asset/icon/gengduo@3x.png"
@@ -50,6 +54,7 @@
         </div>
       </div>
     </div>
+    <div style="font-size:12px;color:#ccc">----没有更多内容了----</div>
   </div>
 </template>
 
@@ -59,12 +64,12 @@ export default {
   data() {
     return {
       indexConfig: {
-        xindeId: 4,
+        id: 2,
         imgUrl:
           "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1544503933316&di=d924751d86766b77ac08e82135664f43&imgtype=0&src=http%3A%2F%2Fbig5.taiwan.cn%2Fxwzx%2FPoliticsNews%2F201712%2FW020171226350972179329.jpg",
         title: `合阳党建概况`,
         isShowTime: false,
-        subhead:
+        abstract:
           "2018年，中共合阳县委紧紧围绕全面从严治党要求，深入贯彻落实党的十九大和习近平总书记新时代中国特色社会主义思想精神，聚焦党建主业，主动担当作为，凝聚广泛力量，奋力追赶超越，以新作为奋力开创组织工作新局面。"
       }
     };
@@ -76,22 +81,28 @@ export default {
 
   methods: {
     heyangjianjie() {
-      this.toDetails(4);
+      this.toDetails(1);
     },
     dangjiangaikuang() {
       this.toDetails(2);
     },
+    heyangdongtai() {
+      this.toNewsList("合阳动态", 3);
+    },
     dangjianyaowen() {
-      this.toNewsList(4);
+      this.toNewsList("党建要闻", 4);
+    },
+    dangjianhuodong() {
+      this.toNewsList("党建活动", 5);
     },
     toDetails(id) {
       wx.navigateTo({
         url: `/pages/news/main?id=${id}`
       });
     },
-    toNewsList(id) {
+    toNewsList(title, id) {
       wx.navigateTo({
-        url: `/pages/newsList/main?title=党建要闻&id=${id}`
+        url: `/pages/newsList/main?title=${title}&id=${id}`
       });
     }
   },
@@ -140,7 +151,7 @@ export default {
   background-color: #fff;
 }
 .dangjiangaikuang {
-  height: 150px;
+  height: 140px;
 }
 .heyangdongtai {
   height: 500px;

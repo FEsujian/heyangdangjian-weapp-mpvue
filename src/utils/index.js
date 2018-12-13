@@ -5,19 +5,33 @@ function formatNumber(n) {
   return str[1] ? str : `0${str}`
 }
 
-export function formatTime(date) {
-  const year = date.getFullYear()
-  const month = date.getMonth() + 1
-  const day = date.getDate()
+// 日期转换默认格式为MM月dd日 hh:mm
+function timeFormat(date, fmt = "MM月dd日 hh:mm") {
+  // 空数据处理
+  if (date === null || date === undefined || date === '') {
+    return ''
+  }
+  // 如果是时间戳则转化为时间
+  if (typeof date === 'number' || typeof date === 'string') {
+    date = new Date(date)
+  }
 
-  const hour = date.getHours()
-  const minute = date.getMinutes()
-  const second = date.getSeconds()
+  let o = {
+    'M+': date.getMonth() + 1, // 月份
+    'd+': date.getDate(), // 日
+    'h+': date.getHours(), // 小时
+    'm+': date.getMinutes(), // 分
+    's+': date.getSeconds(), // 秒
+    'q+': Math.floor((date.getMonth() + 3) / 3), // 季度
+    'S': date.getMilliseconds() // 毫秒
+  }
 
-  const t1 = [year, month, day].map(formatNumber).join('/')
-  const t2 = [hour, minute, second].map(formatNumber).join(':')
+  if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length))
 
-  return `${t1} ${t2}`
+  for (var k in o) {
+    if (new RegExp('(' + k + ')').test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (('00' + o[k]).substr(('' + o[k]).length)))
+  }
+  return fmt
 }
 
 function request(url, method, data, header = {}) {
@@ -57,7 +71,7 @@ function post(obj) {
 
 export default {
   formatNumber,
-  formatTime,
+  timeFormat,
   request,
   get,
   post

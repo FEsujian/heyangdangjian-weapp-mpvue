@@ -4,7 +4,7 @@
     <div class="details">
       <div class="title">{{newsData.title}}</div>
       <div class="abstract">{{newsData.abstract}}</div>
-      <div class="time" v-if="newsData.isShowTime">{{newsData.createTime}}</div>
+      <div class="time" v-if="newsData.isShowTime">{{getTime}}</div>
     </div>
   </div>
 </template>
@@ -14,6 +14,11 @@ export default {
   props: {
     newsData: {
       required: true
+    }
+  },
+  computed: {
+    getTime(date) {
+      return this.$axios.timeFormat(this.newsData.createTime);
     }
   },
   methods: {
@@ -54,6 +59,7 @@ export default {
   text-overflow: ellipsis;
 }
 .abstract {
+  height: 51px;
   font-size: 12px;
   margin: 1px 10px 2px 0;
   color: #4a4a4a;

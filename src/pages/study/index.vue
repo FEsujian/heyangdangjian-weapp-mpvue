@@ -2,19 +2,19 @@
   <div class="container">
     <img src="../../../static/asset/icon/shangchuanxinde@3x.png" class="uploadButton">
     <div class="topButton">
-      <div class="topButtonItem">
+      <div class="topButtonItem" @click="toNewsList('党章党规',6)">
         <img src="../../../static/asset/icon/dangzhangdanggui@3x.png" class="icon30">
         <div class="buttonTitle">党章党规</div>
       </div>
-      <div class="topButtonItem">
+      <div class="topButtonItem" @click="toNewsList('公开课',7)">
         <img src="../../../static/asset/icon/gongkaike@3x.png" class="icon30">
         <div class="buttonTitle">公开课</div>
       </div>
-      <div class="topButtonItem">
+      <div class="topButtonItem" @click="toNewsList('在线考试',8)">
         <img src="../../../static/asset/icon/zaixiankaoshi@3x.png" class="icon30">
         <div class="buttonTitle">在线考试</div>
       </div>
-      <div class="topButtonItem">
+      <div class="topButtonItem" @click="toNewsList('心得体会',9)">
         <img src="../../../static/asset/icon/xindetihui@3x.png" class="icon30">
         <div class="buttonTitle">心得体会</div>
       </div>
@@ -39,7 +39,13 @@
 <script>
 export default {
   computed: {},
-  methods: {}
+  methods: {
+    toNewsList(title, id) {
+      wx.navigateTo({
+        url: `/pages/newsList/main?title=${title}&id=${id}`
+      });
+    }
+  }
 };
 </script>
 
