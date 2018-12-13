@@ -1,4 +1,4 @@
-const host = 'http://192.168.1.88:8999'
+const host = 'https://68e90253.ngrok.io'
 
 function formatNumber(n) {
   const str = n.toString()

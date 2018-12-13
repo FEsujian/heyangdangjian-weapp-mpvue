@@ -15,8 +15,7 @@
   "tabBar": {
     "selectedColor": "#ff3f2d",
     "backgroundColor": "#fff",
-    "list": [
-      {
+    "list": [{
         "pagePath": "pages/index/main",
         "text": "首页",
         "iconPath": "./static/asset/icon/index@3x.png",
@@ -37,7 +36,7 @@
     ]
   },
   "networkTimeout": {
-    "request": 10000,
-    "downloadFile": 10000
+    "request": 100000,
+    "downloadFile": 100000
   }
 }
