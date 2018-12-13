@@ -6,7 +6,7 @@
       <p class="nickName">苏健</p>
     </div>
     <div class="width100 container">
-      <div class="setButton" style="margin-top:10px;">
+      <div class="setButton" style="margin-top:10px;" @click="opinionClick">
         <img src="../../../static/asset/icon/suggest@2x.png" class="icon">
         <div class="inline">意见反馈</div>
       </div>
@@ -21,7 +21,13 @@
 <script>
 export default {
   computed: {},
-  methods: {}
+  methods: {
+    opinionClick() {
+      wx.navigateTo({
+        url: "/pages/mine/opinion/main"
+      });
+    }
+  }
 };
 </script>
 
