@@ -5,7 +5,8 @@
     "pages/mine/main",
     "pages/news/main",
     "pages/mine/opinion/main",
-    "pages/newsList/main"
+    "pages/newsList/main",
+    "pages/experience/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

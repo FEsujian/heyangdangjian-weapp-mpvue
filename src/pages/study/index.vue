@@ -1,6 +1,10 @@
 <template>
   <div class="container">
-    <img src="../../../static/asset/icon/shangchuanxinde@3x.png" class="uploadButton">
+    <img
+      src="../../../static/asset/icon/shangchuanxinde@3x.png"
+      class="uploadButton"
+      @click="Toexperience"
+    >
     <div class="topButton">
       <div class="topButtonItem" @click="toNewsList('党章党规',6)">
         <img src="../../../static/asset/icon/dangzhangdanggui@3x.png" class="icon30">
@@ -40,6 +44,11 @@
 export default {
   computed: {},
   methods: {
+    Toexperience() {
+      wx.navigateTo({
+        url: `/pages/experience/main`
+      });
+    },
     toNewsList(title, id) {
       wx.navigateTo({
         url: `/pages/newsList/main?title=${title}&id=${id}`
