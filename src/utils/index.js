@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const host = 'http://68e90253.ngrok.io';
 
 function formatNumber(n) {
