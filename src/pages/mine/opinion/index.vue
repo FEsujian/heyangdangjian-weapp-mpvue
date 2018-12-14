@@ -8,7 +8,7 @@
           </div>
         </picker>
       </div>
-      <textarea name id cols="50" rows="10" placeholder="请输入问题描述，20-500个字符 感谢您的意见反馈"></textarea>
+      <textarea name id cols="50" rows="10" placeholder="请输入问题描述，20-500个字符 感谢您的意见反馈" v-model="text"></textarea>
       <div class="upload">
         <upload
           width="150rpx"
@@ -20,7 +20,7 @@
         ></upload>
       </div>
     </div>
-    <button>提交反馈</button>
+    <button @click="submit">提交反馈</button>
   </div>
 </template>
 
@@ -31,14 +31,20 @@ export default {
     return {
       type: ["类型1", "类型2", "类型3", "类型4", "类型5"],
       checktype: 1,
-      files: [],
-      filesOnline: []
+      text: "",
+      urls: []
     };
   },
   computed: {},
   methods: {
     bindDateChangeStart(index) {
       this.checktype = index.target.value;
+    },
+    choosed(data) {
+      this.urls = data.all;
+    },
+    submit() {
+      console.log(this.type[this.checktype]);
     }
   },
   mounted() {

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="box">
-      <textarea name id cols="50" rows="10" placeholder="请输入问题描述，20-500个字符 感谢您的意见反馈"></textarea>
+      <textarea name id cols="50" rows="10" placeholder="请输入问题描述，20-500个字符 感谢您的意见反馈" v-model="text"></textarea>
       <div class="upload">
         <upload
           width="150rpx"
@@ -13,7 +13,7 @@
         ></upload>
       </div>
     </div>
-    <button>上传心得</button>
+    <button @click="submit">上传心得</button>
   </div>
 </template>
 
@@ -21,13 +21,21 @@
 import upload from "../../components/upload/upload";
 export default {
   data() {
-    return {};
+    return {
+      text: "",
+      urls: []
+    };
   },
   computed: {},
-  methods: {},
-  mounted() {
-    // 设置时间
+  methods: {
+    choosed(data) {
+      this.urls = data.all;
+    },
+    submit() {
+      console.log(this.text);
+    }
   },
+  mounted() {},
   components: {
     upload
   }
