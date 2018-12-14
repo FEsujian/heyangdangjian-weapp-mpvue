@@ -2,13 +2,23 @@
   <div class="container">
     <div class="box">
       <textarea name id cols="50" rows="10" placeholder="请输入问题描述，20-500个字符 感谢您的意见反馈"></textarea>
-      <div class="upload"></div>
+      <div class="upload">
+        <upload
+          width="150rpx"
+          height="150rpx"
+          max="6"
+          @choosed="choosed"
+          @delete="deleteImg"
+          :srcs="[]"
+        ></upload>
+      </div>
     </div>
     <button>上传心得</button>
   </div>
 </template>
 
 <script>
+import upload from "../../components/upload/upload";
 export default {
   data() {
     return {};
@@ -17,6 +27,9 @@ export default {
   methods: {},
   mounted() {
     // 设置时间
+  },
+  components: {
+    upload
   }
 };
 </script>
@@ -50,10 +63,7 @@ textarea {
   line-height: 25px;
 }
 .upload {
-  width: 100px;
-  height: 100px;
-  background: rgba(246, 246, 246, 1);
-  border-radius: 5px;
-  margin: 10px 10%;
+  width: 80%;
+  margin: 0 auto;
 }
 </style>

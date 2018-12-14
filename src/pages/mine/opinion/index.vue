@@ -9,18 +9,30 @@
         </picker>
       </div>
       <textarea name id cols="50" rows="10" placeholder="请输入问题描述，20-500个字符 感谢您的意见反馈"></textarea>
-      <div class="upload"></div>
+      <div class="upload">
+        <upload
+          width="150rpx"
+          height="150rpx"
+          max="6"
+          @choosed="choosed"
+          @delete="deleteImg"
+          :srcs="[]"
+        ></upload>
+      </div>
     </div>
     <button>提交反馈</button>
   </div>
 </template>
 
 <script>
+import upload from "../../../components/upload/upload";
 export default {
   data() {
     return {
       type: ["类型1", "类型2", "类型3", "类型4", "类型5"],
-      checktype: 1
+      checktype: 1,
+      files: [],
+      filesOnline: []
     };
   },
   computed: {},
@@ -31,6 +43,9 @@ export default {
   },
   mounted() {
     // 设置时间
+  },
+  components: {
+    upload
   }
 };
 </script>
@@ -74,10 +89,7 @@ textarea {
   line-height: 25px;
 }
 .upload {
-  width: 100px;
-  height: 100px;
-  background: rgba(246, 246, 246, 1);
-  border-radius: 5px;
-  margin: 10px 10%;
+  width: 80%;
+  margin: 0 auto;
 }
 </style>
