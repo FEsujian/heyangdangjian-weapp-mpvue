@@ -8,12 +8,22 @@
       style="width:100%;"
     >
       <van-tab v-for="(item,key) in classify" :key="key" :title="item.className">
-        <newsCard v-for="article in articleList" :key="article.id" :newsData="article"></newsCard>
+        <scroll-view class="scrollView" scroll-y="true" @scrolltolower="lower">
+          <newsCard v-for="article in articleList" :key="article.id" :newsData="article"></newsCard>
+          <div
+            v-if="isLower"
+            style="font-size:12px;color:#ccc;text-align:center;margin-top:10px;"
+          >----没有更多内容了----</div>
+        </scroll-view>
       </van-tab>
     </van-tabs>
-    <div v-else style="width:100%;">
+    <scroll-view v-else class="scrollViewFull" scroll-y="true" @scrolltolower="lower">
       <newsCard v-for="article in articleList" :key="article.id" :newsData="article"></newsCard>
-    </div>
+      <div
+        v-if="isLower"
+        style="font-size:12px;color:#ccc;text-align:center;margin-top:10px;"
+      >----没有更多内容了----</div>
+    </scroll-view>
   </div>
 </template>
 
@@ -26,31 +36,51 @@ export default {
   data() {
     return {
       active: 0,
+      articleId: "",
       classify: [],
-      articleList: []
+      articleList: [],
+      page: 1,
+      isLower: false
     };
   },
   methods: {
+    lower() {
+      if (this.isLower) {
+        return;
+      }
+      this.page++;
+      this.getArticle(this.articleId, this.page);
+    },
     tabChange(event) {
       this.active = event.target.index;
-      this.getArticle(this.classify[this.active].id);
+      this.articleId = this.classify[this.active].id;
+      this.articleList = [];
+      this.page = 1;
+      this.isLower = false;
+      this.getArticle(this.articleId);
     },
-    getArticle(id) {
+    getArticle(id, page = 1) {
       // 获取文章列表
       this.$axios
         .get({
-          url: `/findArticleByClassId?id=${id}`
+          url: `/findArticleByClassId?id=${id}&page=${page}&pageSize=6`
         })
         .then(res => {
-          this.articleList = res.result;
+          this.articleList = this.articleList.concat(res.result);
+          if (res.result.length < 6) {
+            this.isLower = true;
+          }
         });
     }
   },
   onLoad() {
     // 数据初始化
     this.active = 0;
+    this.articleId = "";
     this.classify = [];
     this.articleList = [];
+    this.page = 1;
+    this.isLower = false;
   },
   mounted() {
     const query = this.$root.$mp.query;
@@ -66,16 +96,29 @@ export default {
       .then(res => {
         if (res.result.length) {
           this.classify = res.result;
-          this.getArticle(this.classify[0].id);
+          this.articleId = this.classify[0].id;
         } else {
-          this.getArticle(query.id);
+          this.articleId = query.id;
         }
+        this.getArticle(this.articleId);
       });
   }
 };
 </script>
 
 <style scoped>
+.container {
+  height: 100vh;
+  overflow: hidden;
+}
+.scrollView {
+  width: 100%;
+  height: calc(100vh - 44px);
+}
+.scrollViewFull {
+  width: 100%;
+  height: 100vh;
+}
 newsCard {
   margin-top: 20px;
 }

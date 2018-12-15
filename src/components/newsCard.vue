@@ -1,10 +1,10 @@
 <template>
   <div class="newsCard" @click="toDetails">
-    <img :src="newsData.imgUrl" class="thumbnail">
-    <div class="details">
-      <div class="title">{{newsData.title}}</div>
-      <div class="abstract">{{newsData.abstract}}</div>
-      <div class="time" v-if="newsData.isShowTime">{{getTime}}</div>
+    <img :src="newsData.imgUrl" class="cardThumbnail">
+    <div class="cardDetails">
+      <div class="cardTitle">{{newsData.title}}</div>
+      <div class="cardAbstract">{{newsData.abstract}}</div>
+      <div class="carTtime" v-if="newsData.isShowTime">{{getTime}}</div>
     </div>
   </div>
 </template>
@@ -40,26 +40,29 @@ export default {
   background-color: #fff;
   display: flex;
 }
-.thumbnail {
+.cardThumbnail {
   flex: 0 0 120px;
   height: 80px;
   border-radius: 5px;
   margin: 10px 20px;
 }
-.details {
+.cardDetails {
   height: 100px;
 }
 
-.title {
-  margin: 10px 10px 1px 0;
+.cardTitle {
+  margin: 7px 10px 1px 0;
+  height: 20px;
+  line-height: 20px;
   font-size: 14px;
   max-width: 205px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.abstract {
+.cardAbstract {
   height: 51px;
+  line-height: calc(51px / 3);
   font-size: 12px;
   margin: 1px 10px 2px 0;
   color: #4a4a4a;
@@ -68,7 +71,9 @@ export default {
   -webkit-line-clamp: 3;
   overflow: hidden;
 }
-.time {
+.carTtime {
+  height: 14px;
+  line-height: 14px;
   font-size: 10px;
   color: #9b9b9b;
 }

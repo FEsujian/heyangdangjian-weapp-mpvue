@@ -1,4 +1,4 @@
-const host = 'https://68e90253.ngrok.io'
+const host = 'http://a6cek9.natappfree.cc'
 
 function formatNumber(n) {
   const str = n.toString()

@@ -22,7 +22,7 @@
       </div>
     </div>
     <div class="content dangjiangaikuang">
-      <div class="title">
+      <div class="newstitle">
         <div class="inline" style="font-size:16px;margin-left: 20px;">党建概况</div>
         <div
           class="inline"
@@ -38,13 +38,17 @@
         </div>
       </div>
       <div class="gaikuang">
-        <newsCard :newsData="indexConfig"></newsCard>
+        <newsCard :newsData="dangjiangaikuangData"></newsCard>
       </div>
     </div>
     <div class="content heyangdongtai">
-      <div class="title">
+      <div class="newstitle">
         <div class="inline" style="font-size:16px;margin-left: 20px;">合阳动态</div>
-        <div class="inline" style="font-size:12px;color:#9B9B9B;float:right;">
+        <div
+          class="inline"
+          style="font-size:12px;color:#9B9B9B;float:right;"
+          @click="heyangdongtai"
+        >
           更多
           <img
             src="../../../static/asset/icon/gengduo@3x.png"
@@ -52,9 +56,12 @@
             style="margin-right: 10px;"
           >
         </div>
+        <div class="dongtai">
+          <newsCard v-for="article in heyangdongtaiList" :key="article.id" :newsData="article"></newsCard>
+        </div>
       </div>
     </div>
-    <div style="font-size:12px;color:#ccc">----没有更多内容了----</div>
+    <div style="font-size:12px;color:#ccc;margin-top:15px;">----没有更多内容了----</div>
   </div>
 </template>
 
@@ -63,15 +70,8 @@ import newsCard from "../../components/newsCard.vue";
 export default {
   data() {
     return {
-      indexConfig: {
-        id: 2,
-        imgUrl:
-          "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1544503933316&di=d924751d86766b77ac08e82135664f43&imgtype=0&src=http%3A%2F%2Fbig5.taiwan.cn%2Fxwzx%2FPoliticsNews%2F201712%2FW020171226350972179329.jpg",
-        title: `合阳党建概况`,
-        isShowTime: false,
-        abstract:
-          "2018年，中共合阳县委紧紧围绕全面从严治党要求，深入贯彻落实党的十九大和习近平总书记新时代中国特色社会主义思想精神，聚焦党建主业，主动担当作为，凝聚广泛力量，奋力追赶超越，以新作为奋力开创组织工作新局面。"
-      }
+      heyangdongtaiList: [],
+      dangjiangaikuangData: {}
     };
   },
 
@@ -107,7 +107,24 @@ export default {
     }
   },
 
-  created() {}
+  mounted() {
+    // 获取文章列表
+    this.$axios
+      .get({
+        url: `/findArticleByClassId?id=2`
+      })
+      .then(res => {
+        this.dangjiangaikuangData = res.result[0];
+      });
+    // 获取文章列表
+    this.$axios
+      .get({
+        url: `/findArticleByClassId?id=3&pageSize=3`
+      })
+      .then(res => {
+        this.heyangdongtaiList = res.result;
+      });
+  }
 };
 </script>
 
@@ -154,13 +171,17 @@ export default {
   height: 140px;
 }
 .heyangdongtai {
-  height: 500px;
+  height: 360px;
+  box-sizing: border-box;
 }
-.content .title {
+.content .newstitle {
   height: 30px;
   line-height: 30px;
 }
 .gaikuang {
   height: 120px;
+}
+.dongtai {
+  background-color: #f6f6f6;
 }
 </style>

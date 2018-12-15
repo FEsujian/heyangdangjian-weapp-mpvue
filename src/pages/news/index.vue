@@ -2,11 +2,12 @@
   <div class="container" style="background-color:#fff">
     <div class="title">{{article.title}}</div>
     <div class="subheading" v-if="article.subhead">{{article.subhead}}</div>
-    <div class="releaseTime" v-if="article.isShowTime">发布时间:{{article.createTime}}</div>
+    <div class="releaseTime" v-if="article.isShowTime">发布时间: {{getTime}}</div>
     <video class="newsVideo" v-if="article.videoUrl" :src="article.videoUrl"></video>
     <div style="width:90%;">
       <wxParse :content="article.content"/>
     </div>
+    <div style="font-size:12px;color:#ccc;text-align:center;margin-top:10px;">----没有更多内容了----</div>
   </div>
 </template>
 
@@ -20,6 +21,15 @@ export default {
     return {
       article: {}
     };
+  },
+  computed: {
+    getTime(date) {
+      return this.$axios.timeFormat(this.article.createTime);
+    }
+  },
+  onLoad() {
+    // 数据初始化
+    this.article = {};
   },
   mounted() {
     this.$axios
