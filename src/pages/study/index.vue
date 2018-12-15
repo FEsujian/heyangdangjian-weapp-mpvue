@@ -14,7 +14,8 @@
         <img src="../../../static/asset/icon/gongkaike@3x.png" class="icon30">
         <div class="buttonTitle">公开课</div>
       </div>
-      <div class="topButtonItem" @click="toNewsList('在线考试',8)">
+      <!-- <div class="topButtonItem" @click="toNewsList('在线考试',8)"> -->
+      <div class="topButtonItem" @click="toNewsListtopic('在线考试',8)">
         <img src="../../../static/asset/icon/zaixiankaoshi@3x.png" class="icon30">
         <div class="buttonTitle">在线考试</div>
       </div>
@@ -52,6 +53,11 @@ export default {
     toNewsList(title, id) {
       wx.navigateTo({
         url: `/pages/newsList/main?title=${title}&id=${id}`
+      });
+    },
+    toNewsListtopic(title, id) {
+      wx.navigateTo({
+        url: `/pages/topic/main?title=${title}&id=${id}`
       });
     }
   }

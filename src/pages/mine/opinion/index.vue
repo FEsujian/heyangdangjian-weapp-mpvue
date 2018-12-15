@@ -87,7 +87,6 @@ button {
   font-size: 16px;
   color: #fff;
   line-height: 50px;
-  text-indent: 2em;
 }
 textarea {
   margin: 0 auto;
