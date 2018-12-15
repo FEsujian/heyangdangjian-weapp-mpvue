@@ -1,12 +1,20 @@
 <script>
 export default {
   created() {
-    // 调用API从本地缓存中获取数据
-    const logs = wx.getStorageSync("logs") || [];
-    logs.unshift(Date.now());
-    wx.setStorageSync("logs", logs);
-
-    // console.log("app created and cache logs by setStorageSync");
+    wx.getSetting({
+      success: res => {
+        // 如果用户已经授权，则直接获取用户信息，不用提示授权信息
+        if (res.authSetting["scope.userInfo"]) {
+          // 获取用户信息
+          wx.getUserInfo({
+            success: res => {
+              // 设置全局userInfo
+              this.$store.commit("SET_USER_INFO", res.userInfo);
+            }
+          });
+        }
+      }
+    });
   }
 };
 </script>
