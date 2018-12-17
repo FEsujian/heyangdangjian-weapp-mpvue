@@ -56,15 +56,15 @@ function request(url, method, data, header = {}) {
       headers: {
         'content-type': 'application/json' // 默认值
       },
-      success: function (res) {
+      success: function(res) {
         wx.hideLoading();
         resolve(res.data);
       },
-      fail: function (err) {
+      fail: function(err) {
         wx.hideLoading();
         reject(err);
       },
-      complete: function () {
+      complete: function() {
         wx.hideLoading();
       }
     });
