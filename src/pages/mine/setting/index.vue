@@ -26,9 +26,7 @@ export default {
     choosed(data) {
       this.urls = data.all;
     },
-    submit() {
-      console.log(this.type[this.checktype]);
-    }
+    submit() {}
   },
   mounted() {
     this.userInfo = this.$store.state.userInfo;

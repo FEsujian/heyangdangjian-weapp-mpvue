@@ -38,7 +38,6 @@ export default {
         success: function(res) {
           res.tempFilePaths.forEach(v => {
             that.urls.push(v);
-            // console.log(that.urls);
           });
           that.$emit("choosed", {
             all: that.urls,

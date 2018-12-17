@@ -31,9 +31,7 @@ export default {
     choosed(data) {
       this.urls = data.all;
     },
-    submit() {
-      console.log(this.text);
-    }
+    submit() {}
   },
   mounted() {},
   components: {

@@ -43,9 +43,7 @@ export default {
     choosed(data) {
       this.urls = data.all;
     },
-    submit() {
-      console.log(this.type[this.checktype]);
-    }
+    submit() {}
   },
   mounted() {
     // 设置时间

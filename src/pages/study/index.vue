@@ -1,10 +1,10 @@
 <template>
   <div class="container">
-    <img
+    <!-- <img
       src="../../../static/asset/icon/shangchuanxinde@3x.png"
       class="uploadButton"
       @click="Toexperience"
-    >
+    >-->
     <div class="topButton">
       <div class="topButtonItem" @click="toNewsList('党章党规',6)">
         <img src="../../../static/asset/icon/dangzhangdanggui@3x.png" class="icon30">
@@ -14,12 +14,11 @@
         <img src="../../../static/asset/icon/gongkaike@3x.png" class="icon30">
         <div class="buttonTitle">公开课</div>
       </div>
-      <!-- <div class="topButtonItem" @click="toNewsList('在线考试',8)"> -->
       <div class="topButtonItem" @click="toNewsListtopic('在线考试',8)">
         <img src="../../../static/asset/icon/zaixiankaoshi@3x.png" class="icon30">
         <div class="buttonTitle">在线考试</div>
       </div>
-      <div class="topButtonItem" @click="toNewsList('心得体会',9)">
+      <div class="topButtonItem" @click="ToExperienceList">
         <img src="../../../static/asset/icon/xindetihui@3x.png" class="icon30">
         <div class="buttonTitle">心得体会</div>
       </div>
@@ -28,7 +27,11 @@
     <div class="xindetuijian">
       <div class="title">
         <div class="inline" style="font-size:16px;margin-left: 20px;">心得推荐</div>
-        <div class="inline" style="font-size:12px;color:#9B9B9B;float:right;">
+        <div
+          class="inline"
+          style="font-size:12px;color:#9B9B9B;float:right;"
+          @click="ToExperienceList"
+        >
           更多
           <img
             src="../../../static/asset/icon/gengduo@3x.png"
@@ -37,19 +40,45 @@
           >
         </div>
       </div>
+      <div style="box-sizing: border-box;">
+        <experienceCard
+          v-for="experience in experienceList"
+          :key="experience.id"
+          :experienceData="experience"
+        ></experienceCard>
+      </div>
+      <div style="font-size:12px;color:#ccc;margin-top:15px;text-align:center;">----没有更多内容了----</div>
     </div>
   </div>
 </template>
 
 <script>
+import experienceCard from "../../components/experienceCard.vue";
 export default {
+  components: {
+    experienceCard
+  },
   data: {
-    userInfo: {}
+    userInfo: {},
+    experienceList: []
   },
   mounted() {
     this.userInfo = this.$store.state.userInfo;
+    // 获取心得体会列表
+    this.$axios
+      .get({
+        url: `/experience/findAllExperience?pageSize=3&recommend=1`
+      })
+      .then(res => {
+        this.experienceList = res.data;
+      });
   },
   methods: {
+    ToExperienceList() {
+      wx.navigateTo({
+        url: `/pages/experienceList/main`
+      });
+    },
     Toexperience() {
       if (!this.$store.getters.isLogin) {
         wx.showModal({

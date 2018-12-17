@@ -3,7 +3,7 @@
     <div class="width100 top">
       <!-- <img src="../../../static/asset/image/banner@3x.png" class="banner"> -->
       <div class="banner">
-        <swiper :images="images"></swiper>
+        <swiper :images="banner"></swiper>
       </div>
       <div class="topButton">
         <div class="topButtonItem" @click="heyangjianjie">
@@ -77,14 +77,7 @@ export default {
     return {
       heyangdongtaiList: [],
       dangjiangaikuangData: {},
-      images: [
-        {
-          url: "../../../static/asset/image/banner@3x.png"
-        },
-        {
-          url: "../../../static/asset/image/banner@3x.png"
-        }
-      ]
+      banner: []
     };
   },
 
@@ -122,6 +115,14 @@ export default {
   },
 
   mounted() {
+    // 获取首页banner
+    this.$axios
+      .get({
+        url: `/user/getBanner`
+      })
+      .then(res => {
+        this.banner = res.data;
+      });
     // 获取文章列表
     this.$axios
       .get({

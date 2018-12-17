@@ -7,6 +7,7 @@
     "pages/mine/opinion/main",
     "pages/mine/setting/main",
     "pages/newsList/main",
+    "pages/experienceList/main",
     "pages/experience/main",
     "pages/topic/main"
   ],

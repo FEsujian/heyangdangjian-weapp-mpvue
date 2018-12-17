@@ -9,7 +9,7 @@
   >
     <block v-for="(item, index) in images" :key="index">
       <swiper-item>
-        <img :src="item.url" class="slide-image" mode="aspectFill">
+        <img :src="item.imgUrl" class="slide-image" mode="widthFix">
       </swiper-item>
     </block>
   </swiper>
