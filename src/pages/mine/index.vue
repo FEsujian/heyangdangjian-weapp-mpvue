@@ -2,19 +2,19 @@
   <div class="container">
     <img src="../../../static/asset/image/mine-background@3x.png" class="mineTop mineBackground">
     <div class="mineTop mineInfo">
-      <img class="avatar" :src="userInfo.avatarUrl">
-      <p class="nickName">{{userInfo.nickName}}</p>
+      <img v-if="userInfo.id" class="avatar" :src="userInfo.customAvatar||userInfo.avatarUrl">
+      <p v-if="userInfo.id" class="nickName">{{userInfo.customName||userInfo.nickName}}</p>
+      <button v-else open-type="getUserInfo" @getuserinfo="userInfoClick">请登陆</button>
     </div>
     <div class="width100 container">
       <div class="setButton" style="margin-top:10px;" @click="opinionClick">
         <img src="../../../static/asset/icon/suggest@2x.png" class="icon">
         <div class="inline">意见反馈</div>
       </div>
-      <div class="setButton">
+      <div class="setButton" @click="settingClick">
         <img src="../../../static/asset/icon/setting@2x.png" class="icon">
         <div class="inline">设置</div>
       </div>
-      <button open-type="getUserInfo" @getuserinfo="userInfoClick">点击获取个人信息</button>
     </div>
   </div>
 </template>
@@ -28,32 +28,32 @@ export default {
   },
   computed: {},
   mounted() {
-    const _this = this;
     this.userInfo = this.$store.state.userInfo;
-    wx.login({
-      success(res) {
-        console.log(res.code);
-        if (res.code) {
-          _this.$axios
-            .get({
-              url: `/user/getOpenId?code=${res.code}`
-            })
-            .then(res => {
-              console.log(res);
-            });
-        } else {
-          console.log("登录失败！" + res.errMsg);
-        }
-      }
-    });
   },
   methods: {
-    userInfoClick() {
-      console.log("点击了授权");
+    async userInfoClick(e) {
+      if (e.mp.detail.rawData) {
+        // 用户按了允许授权按钮
+        await this.$store.dispatch("getUserInfo");
+        this.userInfo = this.$store.state.userInfo;
+      } else {
+        // 用户按了拒绝按钮
+        wx.showModal({
+          title: "警告",
+          content: "您点击了拒绝授权，无法登陆，请授权之后再试!",
+          showCancel: false,
+          confirmText: "返回授权"
+        });
+      }
     },
     opinionClick() {
       wx.navigateTo({
         url: "/pages/mine/opinion/main"
+      });
+    },
+    settingClick() {
+      wx.navigateTo({
+        url: "/pages/mine/setting/main"
       });
     }
   }

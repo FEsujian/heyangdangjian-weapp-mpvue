@@ -42,15 +42,30 @@
 
 <script>
 export default {
-  computed: {},
+  data: {
+    userInfo: {}
+  },
   mounted() {
-    console.log(this.$store);
+    this.userInfo = this.$store.state.userInfo;
   },
   methods: {
     Toexperience() {
-      wx.navigateTo({
-        url: `/pages/experience/main`
-      });
+      if (!this.$store.getters.isLogin) {
+        wx.showModal({
+          title: "警告",
+          content: "未登陆，请登陆之后再上传!",
+          showCancel: false,
+          success() {
+            wx.switchTab({
+              url: "/pages/mine/main"
+            });
+          }
+        });
+      } else {
+        wx.navigateTo({
+          url: `/pages/experience/main`
+        });
+      }
     },
     toNewsList(title, id) {
       wx.navigateTo({

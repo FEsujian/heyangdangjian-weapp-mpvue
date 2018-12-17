@@ -5,6 +5,7 @@
     "pages/mine/main",
     "pages/news/main",
     "pages/mine/opinion/main",
+    "pages/mine/setting/main",
     "pages/newsList/main",
     "pages/experience/main"
   ],
@@ -16,8 +17,7 @@
   "tabBar": {
     "selectedColor": "#ff3f2d",
     "backgroundColor": "#fff",
-    "list": [
-      {
+    "list": [{
         "pagePath": "pages/index/main",
         "text": "首页",
         "iconPath": "./static/asset/icon/index@3x.png",

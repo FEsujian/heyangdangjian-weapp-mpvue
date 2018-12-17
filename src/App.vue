@@ -1,20 +1,7 @@
 <script>
 export default {
   created() {
-    wx.getSetting({
-      success: res => {
-        // 如果用户已经授权，则直接获取用户信息，不用提示授权信息
-        if (res.authSetting["scope.userInfo"]) {
-          // 获取用户信息
-          wx.getUserInfo({
-            success: res => {
-              // 设置全局userInfo
-              this.$store.commit("SET_USER_INFO", res.userInfo);
-            }
-          });
-        }
-      }
-    });
+    this.$store.dispatch("getUserInfo");
   }
 };
 </script>
