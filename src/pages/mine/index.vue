@@ -2,8 +2,8 @@
   <div class="container">
     <img src="../../../static/asset/image/mine-background@3x.png" class="mineTop mineBackground">
     <div class="mineTop mineInfo">
-      <img class="avatar" src>
-      <p class="nickName">苏健</p>
+      <img class="avatar" :src="userInfo.avatarUrl">
+      <p class="nickName">{{userInfo.nickName}}</p>
     </div>
     <div class="width100 container">
       <div class="setButton" style="margin-top:10px;" @click="opinionClick">
@@ -14,14 +14,43 @@
         <img src="../../../static/asset/icon/setting@2x.png" class="icon">
         <div class="inline">设置</div>
       </div>
+      <button open-type="getUserInfo" @getuserinfo="userInfoClick">点击获取个人信息</button>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      userInfo: {}
+    };
+  },
   computed: {},
+  mounted() {
+    const _this = this;
+    this.userInfo = this.$store.state.userInfo;
+    wx.login({
+      success(res) {
+        console.log(res.code);
+        if (res.code) {
+          _this.$axios
+            .get({
+              url: `/user/getOpenId?code=${res.code}`
+            })
+            .then(res => {
+              console.log(res);
+            });
+        } else {
+          console.log("登录失败！" + res.errMsg);
+        }
+      }
+    });
+  },
   methods: {
+    userInfoClick() {
+      console.log("点击了授权");
+    },
     opinionClick() {
       wx.navigateTo({
         url: "/pages/mine/opinion/main"
@@ -43,9 +72,9 @@ export default {
   flex-direction: column;
 }
 .avatar {
-  background-color: #000;
-  width: 150rpx;
-  height: 150rpx;
+  background-color: #ccc;
+  width: 180rpx;
+  height: 180rpx;
   border-radius: 50%;
 }
 .nickName {

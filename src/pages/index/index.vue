@@ -1,7 +1,10 @@
 <template>
   <div class="container">
     <div class="width100 top">
-      <img src="../../../static/asset/image/banner@3x.png" class="banner">
+      <!-- <img src="../../../static/asset/image/banner@3x.png" class="banner"> -->
+      <div class="banner">
+        <swiper :images="images"></swiper>
+      </div>
       <div class="topButton">
         <div class="topButtonItem" @click="heyangjianjie">
           <img src="../../../static/asset/icon/heyangjianjie@3x.png" class="icon30">
@@ -67,16 +70,27 @@
 
 <script>
 import newsCard from "../../components/newsCard.vue";
+import swiper from "../../components/swiper/swiper";
+
 export default {
   data() {
     return {
       heyangdongtaiList: [],
-      dangjiangaikuangData: {}
+      dangjiangaikuangData: {},
+      images: [
+        {
+          url: "../../../static/asset/image/banner@3x.png"
+        },
+        {
+          url: "../../../static/asset/image/banner@3x.png"
+        }
+      ]
     };
   },
 
   components: {
-    newsCard
+    newsCard,
+    swiper
   },
 
   methods: {

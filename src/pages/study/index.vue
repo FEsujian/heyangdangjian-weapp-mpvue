@@ -44,6 +44,9 @@
 <script>
 export default {
   computed: {},
+  mounted() {
+    console.log(this.$store);
+  },
   methods: {
     Toexperience() {
       wx.navigateTo({
