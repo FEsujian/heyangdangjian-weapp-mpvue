@@ -162,5 +162,6 @@ export default {
 .xindetuijian .title {
   height: 35px;
   line-height: 35px;
+  margin-bottom: -10px;
 }
 </style>

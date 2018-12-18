@@ -54,21 +54,21 @@ export default {
   margin: 7px 10px 1px 0;
   height: 20px;
   line-height: 20px;
-  font-size: 14px;
+  font-size: 16px;
   max-width: 205px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 .cardAbstract {
-  height: 51px;
-  line-height: calc(51px / 3);
+  height: 40px;
+  line-height: 20px;
   font-size: 12px;
-  margin: 1px 10px 2px 0;
+  margin: 10px 10px 5px 0;
   color: #4a4a4a;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   overflow: hidden;
 }
 .carTtime {

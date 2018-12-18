@@ -26,7 +26,7 @@
     </div>
     <div class="content dangjiangaikuang">
       <div class="newstitle">
-        <div class="inline" style="font-size:16px;margin-left: 20px;">党建概况</div>
+        <div class="inline" style="font-size:16px;font-weight:bold;margin-left: 20px;">党建概况</div>
         <div
           class="inline"
           style="font-size:12px;color:#9B9B9B;float:right;"
@@ -46,7 +46,7 @@
     </div>
     <div class="content heyangdongtai">
       <div class="newstitle">
-        <div class="inline" style="font-size:16px;margin-left: 20px;">合阳动态</div>
+        <div class="inline" style="font-size:16px;font-weight:bold;margin-left: 20px;">合阳动态</div>
         <div
           class="inline"
           style="font-size:12px;color:#9B9B9B;float:right;"
@@ -147,9 +147,10 @@ export default {
 .banner {
   height: 130px;
   border-radius: 5px;
-  margin: 20px;
+  margin-bottom: 20px;
 }
 .topButton {
+  margin-top: 30px;
   display: flex;
   height: 100px;
   width: 100%;
@@ -166,7 +167,7 @@ export default {
   margin-top: 10px;
 }
 .top {
-  height: 280px;
+  height: 260px;
   background-color: #fff;
   text-align: center;
 }

@@ -35,15 +35,15 @@ export default {
       this.page++;
       this.getExperience(this.page);
     },
-    getExperience(page = 1) {
+    getExperience(page = 1, pageSize = 10) {
       // 获取心得列表
       this.$axios
         .get({
-          url: `/experience/findAllExperience?page=${page}`
+          url: `/experience/findAllExperience?page=${page}&pageSize=${pageSize}`
         })
         .then(res => {
           this.experienceList = this.experienceList.concat(res.data);
-          if (res.data.length < 6) {
+          if (res.data.length < 10) {
             this.isLower = true;
           }
         });

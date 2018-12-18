@@ -39,13 +39,14 @@ const store = new Vuex.Store({
         });
       });
       // 用户登录获取用户信息
-      const oldUserData = await new Promise((resolve, reject) => {
+      let oldUserData = await new Promise((resolve, reject) => {
         wx.login({
           success(res) {
             if (res.code) {
               WXrequest
                 .get({
-                  url: `/user/getUserInfo?code=${res.code}`
+                  url: `/user/getUserInfo?code=${res.code}`,
+                  isLoading: false
                 })
                 .then(res => {
                   resolve(res.data);
@@ -57,8 +58,9 @@ const store = new Vuex.Store({
 
       if (oldUserData.id) {
         // 如果用户存在更新用户信息
-        WXrequest.post({
+        await WXrequest.post({
           url: "/user/updateUser",
+          isLoading: false,
           data: {
             updateData: Object.assign({
               id: oldUserData.id
@@ -69,12 +71,16 @@ const store = new Vuex.Store({
         });
       } else {
         // 如果用户不存在创建用户
-        WXrequest.post({
+        const result = await WXrequest.post({
           url: "/user/createUser",
           data: {
-            userData: newUserData
-          }
+            userData: Object.assign({
+              openid: oldUserData.openid
+            }, newUserData)
+          },
+          isLoading: false
         });
+        oldUserData = result.data
       }
       commit(
         "SET_USER_INFO",

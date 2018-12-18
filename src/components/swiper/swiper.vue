@@ -37,4 +37,8 @@ export default {
 </script>
 
 <style scoped>
+.slide-image {
+  width: 675rpx;
+  height: 380rpx;
+}
 </style>

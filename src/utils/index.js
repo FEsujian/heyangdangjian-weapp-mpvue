@@ -1,4 +1,4 @@
-const host = 'http://7mh73j.natappfree.cc';
+const host = 'https://dangjian.aisujian.com';
 
 function formatNumber(n) {
   const str = n.toString();
@@ -44,10 +44,13 @@ function timeFormat(date, fmt = 'MM月dd日 hh:mm') {
   return fmt;
 }
 
-function request(url, method, data, header = {}) {
-  wx.showLoading({
-    title: '加载中' // 数据请求前loading
-  });
+function request(url, method, data, header = {}, isLoading = true) {
+  if (isLoading) {
+    wx.showLoading({
+      title: '加载中' // 数据请求前loading
+    });
+  }
+
   return new Promise((resolve, reject) => {
     wx.request({
       url: host + url, // 仅为示例，并非真实的接口地址
@@ -57,11 +60,11 @@ function request(url, method, data, header = {}) {
         'content-type': 'application/json' // 默认值
       },
       success: function (res) {
-        wx.hideLoading();
+        // wx.hideLoading();
         resolve(res.data);
       },
       fail: function (err) {
-        wx.hideLoading();
+        // wx.hideLoading();
         reject(err);
       },
       complete: function () {
@@ -72,11 +75,11 @@ function request(url, method, data, header = {}) {
 }
 
 function get(obj) {
-  return request(obj.url, 'GET', obj.data);
+  return request(obj.url, 'GET', obj.data, obj.header, obj.isLoading);
 }
 
 function post(obj) {
-  return request(obj.url, 'POST', obj.data);
+  return request(obj.url, 'POST', obj.data, obj.header, obj.isLoading);
 }
 
 export default {
