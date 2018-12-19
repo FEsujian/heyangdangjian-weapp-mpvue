@@ -40,8 +40,8 @@ export default {
 <style scoped>
 .avatar {
   background-color: #ccc;
-  width: 40rpx;
-  height: 40rpx;
+  width: 70rpx;
+  height: 70rpx;
   border-radius: 50%;
 }
 .box {

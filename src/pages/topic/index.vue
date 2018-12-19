@@ -23,7 +23,7 @@ export default {
           url: `/findArticleByClassId?id=${id}&page=${page}&pageSize=6`
         })
         .then(res => {
-          this.topics = res.result;
+          this.topics = res.data;
         });
     }
   },

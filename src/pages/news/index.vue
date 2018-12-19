@@ -37,7 +37,7 @@ export default {
         url: `/findArticleById?id=${this.$root.$mp.query.id}`
       })
       .then(res => {
-        this.article = res.result[0];
+        this.article = res.data[0];
       });
   }
 };

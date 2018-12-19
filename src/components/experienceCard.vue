@@ -59,7 +59,7 @@ export default {
 }
 
 .left {
-  width: 55px;
+  width: 70px;
   background-color: #fff;
 }
 .right {
@@ -77,7 +77,7 @@ export default {
 .avatar {
   width: 50px;
   height: 50px;
-  margin: 10px 5px;
+  margin: 10px 10px;
   border-radius: 50%;
 }
 

@@ -129,7 +129,7 @@ export default {
         url: `/findArticleByClassId?id=2`
       })
       .then(res => {
-        this.dangjiangaikuangData = res.result[0];
+        this.dangjiangaikuangData = res.data[0];
       });
     // 获取文章列表
     this.$axios
@@ -137,7 +137,7 @@ export default {
         url: `/findArticleByClassId?id=3&pageSize=3`
       })
       .then(res => {
-        this.heyangdongtaiList = res.result;
+        this.heyangdongtaiList = res.data;
       });
   }
 };

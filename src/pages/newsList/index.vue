@@ -66,8 +66,8 @@ export default {
           url: `/findArticleByClassId?id=${id}&page=${page}&pageSize=6`
         })
         .then(res => {
-          this.articleList = this.articleList.concat(res.result);
-          if (res.result.length < 6) {
+          this.articleList = this.articleList.concat(res.data);
+          if (res.data.length < 6) {
             this.isLower = true;
           }
         });
@@ -94,8 +94,8 @@ export default {
         url: `/findClassById?id=${query.id}`
       })
       .then(res => {
-        if (res.result.length) {
-          this.classify = res.result;
+        if (res.data.length) {
+          this.classify = res.data;
           this.articleId = this.classify[0].id;
         } else {
           this.articleId = query.id;
