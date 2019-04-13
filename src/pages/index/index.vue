@@ -18,9 +18,9 @@
           <img src="../../../static/asset/icon/dangjianyaowen@3x.png" class="icon30">
           <div class="buttonTitle">党建要闻</div>
         </div>
-        <div class="topButtonItem" @click="dangjianhuodong">
-          <img src="../../../static/asset/icon/dangjianhuodong@3x.png" class="icon30">
-          <div class="buttonTitle">党建活动</div>
+        <div class="topButtonItem" @click="dangjianshipin">
+          <img src="../../../static/asset/icon/video@3x.png" class="icon30">
+          <div class="buttonTitle">党建视频</div>
         </div>
       </div>
     </div>
@@ -99,8 +99,10 @@ export default {
     dangjianyaowen() {
       this.toNewsList("党建要闻", 4);
     },
-    dangjianhuodong() {
-      this.toNewsList("党建活动", 5);
+    dangjianshipin() {
+      wx.navigateTo({
+        url: `/pages/videoList/main?title=党建微视频&id=5`
+      });
     },
     toDetails(id) {
       wx.navigateTo({

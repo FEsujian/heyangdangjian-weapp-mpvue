@@ -17,6 +17,7 @@ function timeFormat(date, fmt = 'MM月dd日 hh:mm') {
   }
 
   let o = {
+    'y+': date.getFullYear(),
     'M+': date.getMonth() + 1, // 月份
     'd+': date.getDate(), // 日
     'h+': date.getHours(), // 小时

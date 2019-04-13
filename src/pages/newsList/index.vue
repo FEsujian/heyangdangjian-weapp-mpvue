@@ -8,7 +8,7 @@
       style="width:100%;"
     >
       <van-tab v-for="(item,key) in classify" :key="key" :title="item.className">
-        <scroll-view class="scrollView" scroll-y="true" @scrolltolower="lower">
+        <scroll-view class="scrollView" scroll-y="true" @bindscrolltolower="lower">
           <newsCard v-for="article in articleList" :key="article.id" :newsData="article"></newsCard>
           <div
             v-if="isLower"

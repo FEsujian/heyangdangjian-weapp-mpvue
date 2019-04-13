@@ -18,19 +18,15 @@
         <img src="../../../static/asset/icon/zaixiankaoshi@3x.png" class="icon30">
         <div class="buttonTitle">在线考试</div>
       </div>
-      <div class="topButtonItem" @click="ToExperienceList">
-        <img src="../../../static/asset/icon/xindetihui@3x.png" class="icon30">
-        <div class="buttonTitle">心得体会</div>
-      </div>
     </div>
     <img src="../../../static/asset/image/tiananmen@3x.png" class="tiananmen">
     <div class="xindetuijian">
       <div class="title">
-        <div class="inline" style="font-size:16px;margin-left: 20px;">心得推荐</div>
+        <div class="inline" style="font-size:16px;margin-left: 20px;">党章党规</div>
         <div
           class="inline"
           style="font-size:12px;color:#9B9B9B;float:right;"
-          @click="ToExperienceList"
+          @click="toNewsList('党章党规',6)"
         >
           更多
           <img
@@ -41,11 +37,7 @@
         </div>
       </div>
       <div style="box-sizing: border-box;">
-        <experienceCard
-          v-for="experience in experienceList"
-          :key="experience.id"
-          :experienceData="experience"
-        ></experienceCard>
+        <newsCard v-for="article in articleList" :key="article.id" :newsData="article"></newsCard>
       </div>
       <div style="font-size:12px;color:#ccc;margin-top:15px;text-align:center;">----没有更多内容了----</div>
     </div>
@@ -53,32 +45,27 @@
 </template>
 
 <script>
-import experienceCard from "../../components/experienceCard.vue";
+import newsCard from "../../components/newsCard.vue";
 export default {
   components: {
-    experienceCard
+    newsCard
   },
   data: {
     userInfo: {},
-    experienceList: []
+    articleList: []
   },
   mounted() {
     this.userInfo = this.$store.state.userInfo;
-    // 获取心得体会列表
+    // 获取文章列表
     this.$axios
       .get({
-        url: `/experience/findAllExperience?pageSize=3&recommend=1`
+        url: `/findArticleByClassId?id=6&page=1&pageSize=5`
       })
       .then(res => {
-        this.experienceList = res.data;
+        this.articleList = res.data;
       });
   },
   methods: {
-    ToExperienceList() {
-      wx.navigateTo({
-        url: `/pages/experienceList/main`
-      });
-    },
     Toexperience() {
       if (!this.$store.getters.isLogin) {
         wx.showModal({

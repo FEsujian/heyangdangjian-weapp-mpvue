@@ -16,7 +16,7 @@
           max="6"
           @choosed="choosed"
           @delete="deleteImg"
-          :srcs="[]"
+          :srcs="urls"
         ></upload>
       </div>
     </div>
@@ -29,8 +29,8 @@ import upload from "../../../components/upload/upload";
 export default {
   data() {
     return {
-      type: ["类型1", "类型2", "类型3", "类型4", "类型5"],
-      checktype: 1,
+      type: ["内容错误", "功能相关", "意见建议", "其他问题"],
+      checktype: 0,
       text: "",
       urls: []
     };
@@ -43,7 +43,19 @@ export default {
     choosed(data) {
       this.urls = data.all;
     },
-    submit() {}
+    submit() {
+      wx.showToast({
+        title: "反馈成功,感谢！",
+        icon: "success",
+        duration: 2500
+      });
+      setTimeout(() => {
+        this.text = "";
+        this.urls = [];
+        this.checktype = 0;
+        wx.navigateBack();
+      }, 3000);
+    }
   },
   mounted() {
     // 设置时间

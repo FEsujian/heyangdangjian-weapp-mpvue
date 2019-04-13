@@ -1,5 +1,5 @@
 <template>
-  <div class="experience" :style="{height:experienceHeight}">
+  <div class="experience">
     <div class="left">
       <img class="avatar" :src="experienceData.avatarUrl">
     </div>
@@ -41,7 +41,7 @@ export default {
   },
   computed: {
     experienceHeight() {
-      return this.experienceData.imgUrl.length > 3 ? "280px" : "180px";
+      return this.experienceData.imgUrl.length > 3 ? "290px" : "190px";
     }
     // getTime(date) {
     //   return this.$axios.timeFormat(this.experienceData.createTime);
@@ -90,7 +90,7 @@ export default {
 .xdImg {
   width: 80px;
   height: 80px;
-  margin: 5px 12px;
+  margin: 5px 10px;
 }
 .content {
   height: 50px;
