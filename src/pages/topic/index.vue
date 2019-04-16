@@ -20,7 +20,7 @@ export default {
       // 获取试题列表
       this.$axios
         .get({
-          url: `/findArticleByClassId?id=${id}&page=${page}&pageSize=6`
+          url: `/findArticleByClassId?id=${id}&page=${page}&pageSize=999`
         })
         .then(res => {
           this.topics = res.data;

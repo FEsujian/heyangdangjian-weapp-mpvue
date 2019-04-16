@@ -8,6 +8,7 @@
     "pages/mine/setting/main",
     "pages/newsList/main",
     "pages/videoList/main",
+    "pages/videoDetail/main",
     "pages/experienceList/main",
     "pages/experience/main",
     "pages/topic/main"

@@ -12,10 +12,6 @@
         style="font-size:12px;color:#ccc;text-align:center;margin-top:10px;clear:both;"
       >----没有更多内容了----</div>
     </scroll-view>
-    <div v-if="videoShow" class="mask">
-      <video v-if="videoShow" class="videoToast" :src="videoUrl"></video>
-      <button @click="closeVideo">×</button>
-    </div>
   </div>
 </template>
 
@@ -27,8 +23,7 @@ export default {
   },
   data() {
     return {
-      videoShow: false,
-      videoUrl: "",
+      videoData: null,
       videoList: [],
       page: 1,
       isLower: false
@@ -36,12 +31,12 @@ export default {
   },
   methods: {
     playVideo(item) {
-      this.videoUrl = item.videoUrl;
-      this.videoShow = true;
-    },
-    closeVideo() {
-      this.videoUrl = "";
-      this.videoShow = false;
+      this.videoData = item;
+      wx.navigateTo({
+        url: `/pages/videoDetail/main?title=${item.title}&videoUrl=${
+          item.videoUrl
+        }`
+      });
     },
     lower() {
       if (this.isLower) {
@@ -67,7 +62,6 @@ export default {
   onLoad() {
     // 数据初始化
     this.videoList = [];
-    this.videoShow = false;
     this.page = 1;
     this.isLower = false;
   },

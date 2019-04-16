@@ -87,8 +87,8 @@ export default {
 .title {
   font-size: 28rpx;
   color: #240d0d;
-  overflow: hidden;
-  height: 40rpx;
+  /* overflow: hidden; */
+  /* height: 60rpx; */
 }
 .number {
   font-size: 24rpx;
@@ -101,7 +101,7 @@ export default {
 .line {
   margin-left: 17rpx;
   display: block;
-  height: 200rpx;
+  height: 250rpx;
   width: 100%;
   border-left: 5rpx solid #ff2f16;
 }
